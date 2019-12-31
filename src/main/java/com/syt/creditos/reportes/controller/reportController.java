@@ -103,10 +103,10 @@ public class reportController {
             item.put("fecha", params.get("fechaDePago").toString());
             item.put("abonoCapital", params.get("abonoCapital").toString());
             item.put("interes", params.get("interes").toString());
-            item.put("mora", (params.get("mora").toString() != null ? params.get("mora").toString() : '0'));
+            item.put("mora", (params.get("mora") != null ? params.get("mora").toString() : "0"));
             item.put("cuotaSeguro", params.get("cuotaSeguro").toString());
             item.put("boleta", params.get("numeroBoleta").toString());
-            item.put("usuario", params.get("idUsuario").toString() != null ? params.get("idUsuario").toString() : '-');
+            item.put("usuario", params.get("idUsuario") != null ? params.get("idUsuario").toString() : "-");
             item.put("prestamo", params.get("idPrestamo").toString());
             item.put("montoExtra", params.get("montoExtraCapital").toString());
             result.add(item);
