@@ -4,16 +4,14 @@ import com.syt.creditos.reportes.service.JasperReportsService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
+import net.sf.jasperreports.export.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
+@CrossOrigin
 @RequestMapping("product")
 public class reportController {
 
@@ -34,17 +33,53 @@ public class reportController {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @RequestMapping(value = "report", method = RequestMethod.GET)
-    public void report(HttpServletResponse response) throws Exception {
-        response.setContentType("text/html");
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(/*productService.*/report());
+    @RequestMapping(value = "report", method = RequestMethod.POST)
+    public void report(@RequestBody Map<String,Object> params, HttpServletResponse response) throws Exception {
+        //response.setContentType("application/pdf");
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(/*productService.*/report(params));
         InputStream inputStream = this.getClass().getResourceAsStream("/reports/constanciaPago.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
+        /*
         HtmlExporter exporter = new HtmlExporter(DefaultJasperReportsContext.getInstance());
         exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
         exporter.setExporterOutput(new SimpleHtmlExporterOutput(response.getWriter()));
-        exporter.exportReport();
+        exporter.exportReport();*/
+
+
+        JRPdfExporter exporter2 = new JRPdfExporter();
+
+        exporter2.setExporterInput(new SimpleExporterInput(jasperPrint));
+        //exporter2.setExporterOutput(new SimpleOutputStreamExporterOutput("employeeReport.pdf"));
+
+        SimplePdfReportConfiguration reportConfig
+                = new SimplePdfReportConfiguration();
+        reportConfig.setSizePageToContent(true);
+        reportConfig.setForceLineBreakPolicy(false);
+
+        SimplePdfExporterConfiguration exportConfig
+                = new SimplePdfExporterConfiguration();
+        exportConfig.setMetadataAuthor("syt");
+        exportConfig.setEncrypted(true);
+        exportConfig.setAllowedPermissionsHint("PRINTING");
+
+        exporter2.setConfiguration(reportConfig);
+        exporter2.setConfiguration(exportConfig);
+
+        //exporter2.exportReport();
+        //exporter2.getExporterOutput();
+
+        //response.setHeader("Content-disposition", "inline; filename=helloWorldReport.pdf");
+/*
+        final OutputStream outStream = exporter2.getExporterOutput().getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+*/
+        response.setContentType("application/x-pdf");
+        response.setHeader("Content-disposition", "inline; filename=App_report_en.pdf");
+
+        final OutputStream outStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
 
 /*
         InputStream jasperStream = this.getClass().getResourceAsStream("/jasperreports/HelloWorld1.jasper");
@@ -60,15 +95,20 @@ public class reportController {
 
     }
 
-    public List<Map<String, Object>> report() {
+    public List<Map<String, Object>> report(Map<String,Object> params) {
         List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
         //for (Product product : productRepository.findAll()) {
             Map<String, Object> item = new HashMap<String, Object>();
-            item.put("pago", 25.00);
-            /*item.put("name", product.getName());
-            item.put("price", product.getPrice());
-            item.put("quantity", product.getQuantity());
-            item.put("categoryName", product.getCategoryName());*/
+            item.put("pago", Double.parseDouble(params.get("montoPagado").toString()));
+            item.put("fecha", params.get("fechaDePago").toString());
+            item.put("abonoCapital", params.get("abonoCapital").toString());
+            item.put("interes", params.get("interes").toString());
+            item.put("mora", params.get("mora").toString());
+            item.put("cuotaSeguro", params.get("cuotaSeguro").toString());
+            item.put("boleta", params.get("numeroBoleta").toString());
+            item.put("usuario", params.get("idUsuario").toString());
+            item.put("prestamo", params.get("idPrestamo").toString());
+            item.put("montoExtra", params.get("montoExtraCapital").toString());
             result.add(item);
         //}
         return result;
@@ -78,7 +118,7 @@ public class reportController {
     public ResponseEntity<List<Object>> report(@PathVariable(required = false) String username) {
         Map<String, Object> params = new HashMap<>();
         params.put("pagoTotal", username);
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(/*productService.*/report());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(/*productService.*/report(params));
         //InputStream inputStream = this.getClass().getResourceAsStream("/reports/constanciaPago.jrxml");
         List<Object> bytes = reportService.generateInlineHtmlReport("/reports/constanciaPago.jrxml", params);
         return ResponseEntity
