@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportePagos" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idPrestamo" class="java.lang.Long"/>
+	<field name="primerNombre" class="java.lang.String"/>
+	<field name="primerApellido" class="java.lang.String"/>
+	<field name="abonoCapital" class="java.lang.Double"/>
+	<field name="interes" class="java.lang.Double"/>
+	<field name="cuotaSeguro" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="pagoExtraCapital" class="java.lang.Double"/>
+	<field name="fechaSistema" class="java.lang.String"/>
+	<variable name="SUMA_CAPITAL" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{abonoCapital}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SUMA_INTERES" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{interes}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SUMA_SEGURO" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{cuotaSeguro}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SUMA_MORA" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SUMA_EXTRA" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{pagoExtraCapital}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SUMAR_FILAS" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{abonoCapital}+$F{interes}+$F{cuotaSeguro}+$F{total}+$F{pagoExtraCapital}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="TOTAL_GENERAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{SUMAR_FILAS}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="116" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="80" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="380" y="10" width="50" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="430" y="10" width="124" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="20" y="10" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA["src/main/resources/reports/credi.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="95" y="0" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CREDIAMIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="55" width="315" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
+				<text><![CDATA[Teléfono: 77719197  e-mail: crediamigosoloma@hotmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="25" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
+				<text><![CDATA[3ra av 6-78 Zona 1 Barrio El Centro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="40" width="205" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
+				<text><![CDATA[San Pedro Soloma, Huehuetenango]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="48">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="30" uuid="b621dc54-48cd-404e-aa3e-e7db274e0c6f"/>
+				<text><![CDATA[Crédito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="0" width="55" height="30" uuid="4724d2e5-cfdd-42a6-ad74-062f0e235195"/>
+				<text><![CDATA[Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="60" height="30" uuid="6c746188-aa3e-4ec8-b79c-8bce9afc1b57"/>
+				<text><![CDATA[Interés]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="0" width="40" height="30" uuid="97ce4c09-48cc-4b9d-8abf-d10f71f2e56f"/>
+				<text><![CDATA[Seguro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="0" width="48" height="30" uuid="05493e95-668d-44af-b3a6-43d1c89839f1"/>
+				<text><![CDATA[Mora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="100" height="30" uuid="89ee5abe-e84b-4cee-95c5-1b750205a17c"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="50" height="30" uuid="6557f1a3-1c47-4f68-a0fc-76c17f19c0e7"/>
+				<text><![CDATA[Extra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="64" height="30" uuid="ac82d01e-83bc-4515-bb6c-436a465cf689"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="60" height="30" uuid="b82caf68-2308-41bc-914e-0ce379c51232"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="30" uuid="a2461068-25be-4baf-ba4b-3cac5ec59021"/>
+				<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="0" width="70" height="20" uuid="b3c40869-9ed3-461f-ac8f-ed10c0e4bd57"/>
+				<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="50" height="30" uuid="2cba7692-0c59-46fc-9e65-a482abd0452b"/>
+				<textFieldExpression><![CDATA[$F{abonoCapital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="50" height="30" uuid="b039d6dc-885a-4ed2-85cf-e06b1e9dc2bb"/>
+				<textFieldExpression><![CDATA[$F{interes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="0" width="50" height="30" uuid="0994343f-2c86-4adf-9edc-26fd1f0d441d"/>
+				<textFieldExpression><![CDATA[$F{cuotaSeguro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="0" width="43" height="30" uuid="abe8d498-8c9e-4e40-95ad-fbcfbf6b3896"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="70" height="23" uuid="8edf3e17-019c-4954-a08b-f54d23f69a34"/>
+				<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="50" height="30" uuid="7f024a6d-fc07-468a-83a1-23215d37cc48"/>
+				<textFieldExpression><![CDATA[$F{pagoExtraCapital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="76" height="30" uuid="d6fc787e-4c4c-4c15-a2b2-3b662be1fc96"/>
+				<textFieldExpression><![CDATA[$F{fechaSistema}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;¤(#,##0.00#-)">
+				<reportElement x="410" y="1" width="66" height="30" uuid="e934b4be-fffe-4a91-8a9d-096f26f8663d"/>
+				<textFieldExpression><![CDATA[$V{SUMAR_FILAS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="193">
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="147" width="556" height="30" backcolor="#E6E8E9" uuid="36aa233d-4305-48e6-974a-1bbf89bb3c8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE PAGOS REALIZADOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="180" width="515" height="13" backcolor="#E6E6E6" uuid="a7735266-4100-47ff-9fd9-40fad81c5833"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="516" y="180" width="40" height="13" backcolor="#E6E6E6" uuid="7122fe0c-c086-41b0-a263-5839d51fdac9"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="160" y="110" width="60" height="30" uuid="e8c34f49-ae81-4b40-b62a-0e3a7edf8b92"/>
+				<textFieldExpression><![CDATA[$V{SUMA_CAPITAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="110" width="80" height="30" uuid="1ebdbd4d-00eb-4ac5-88c8-77734d8aa919"/>
+				<text><![CDATA[Totales]]></text>
+			</staticText>
+			<textField pattern="#,##0.00#;(#,##0.00#-)">
+				<reportElement x="220" y="110" width="60" height="30" uuid="f620215b-cc56-4d1f-97b6-8ae3224ed420"/>
+				<textFieldExpression><![CDATA[$V{SUMA_INTERES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="110" width="37" height="30" uuid="32c7722c-9e58-4049-a715-348aa7f26023"/>
+				<textFieldExpression><![CDATA[$V{SUMA_SEGURO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="110" width="43" height="30" uuid="6e7afaa6-5e1c-4aa1-96ee-f29295f0df74"/>
+				<textFieldExpression><![CDATA[$V{SUMA_MORA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="110" width="50" height="30" uuid="a134ef60-d007-4855-bd36-fec5ad1a17d8"/>
+				<textFieldExpression><![CDATA[$V{SUMA_EXTRA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00#;¤(#,##0.00#-)">
+				<reportElement x="410" y="110" width="70" height="30" uuid="fba6beb9-3540-4516-b79b-d1b75cc36575"/>
+				<textFieldExpression><![CDATA[$V{TOTAL_GENERAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>
