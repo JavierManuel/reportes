@@ -350,8 +350,8 @@ public class generateController {
                 encabezado.setIdUsuarios((Integer) ob.get(0));
                 encabezado.setPrimerNombres(ob.get(1).toString());
                 encabezado.setPrimerApellidos(ob.get(2).toString());
-                encabezado.setDireccions(ob.get(3).toString());
-                encabezado.setEmails(ob.get(4).toString());
+                encabezado.setDireccions(ob.get(3) != null ? ob.get(3).toString() : "");
+                encabezado.setEmails(ob.get(4) != null ? ob.get(4).toString() : "");
 
                 ArrayList<Object> detalleCartera = (ArrayList<Object>) detallePago.get("detalleCartera");
                 ArrayList<ReporteInteresesCarteraFechasDTO> reportDto1 = new ArrayList<>();
