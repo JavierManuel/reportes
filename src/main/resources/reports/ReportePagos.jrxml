@@ -143,7 +143,7 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="48">
+		<band height="31">
 			<staticText>
 				<reportElement x="0" y="0" width="50" height="30" uuid="b621dc54-48cd-404e-aa3e-e7db274e0c6f"/>
 				<text><![CDATA[Crédito]]></text>
@@ -183,13 +183,13 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="46">
+		<band height="31">
 			<textField>
 				<reportElement x="0" y="0" width="50" height="30" uuid="a2461068-25be-4baf-ba4b-3cac5ec59021"/>
 				<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="30" y="0" width="70" height="20" uuid="b3c40869-9ed3-461f-ac8f-ed10c0e4bd57"/>
+				<reportElement x="50" y="1" width="50" height="20" uuid="b3c40869-9ed3-461f-ac8f-ed10c0e4bd57"/>
 				<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -209,7 +209,7 @@
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="0" width="70" height="23" uuid="8edf3e17-019c-4954-a08b-f54d23f69a34"/>
+				<reportElement x="100" y="0" width="50" height="23" uuid="8edf3e17-019c-4954-a08b-f54d23f69a34"/>
 				<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -220,7 +220,7 @@
 				<reportElement x="480" y="0" width="76" height="30" uuid="d6fc787e-4c4c-4c15-a2b2-3b662be1fc96"/>
 				<textFieldExpression><![CDATA[$F{fechaSistema}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00#;¤(#,##0.00#-)">
+			<textField>
 				<reportElement x="410" y="1" width="66" height="30" uuid="e934b4be-fffe-4a91-8a9d-096f26f8663d"/>
 				<textFieldExpression><![CDATA[$V{SUMAR_FILAS}]]></textFieldExpression>
 			</textField>
@@ -244,7 +244,7 @@
 				<reportElement mode="Opaque" x="516" y="180" width="40" height="13" backcolor="#E6E6E6" uuid="7122fe0c-c086-41b0-a263-5839d51fdac9"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00#;(#,##0.00#-)">
+			<textField>
 				<reportElement x="160" y="110" width="60" height="30" uuid="e8c34f49-ae81-4b40-b62a-0e3a7edf8b92"/>
 				<textFieldExpression><![CDATA[$V{SUMA_CAPITAL}]]></textFieldExpression>
 			</textField>
@@ -252,7 +252,7 @@
 				<reportElement x="80" y="110" width="80" height="30" uuid="1ebdbd4d-00eb-4ac5-88c8-77734d8aa919"/>
 				<text><![CDATA[Totales]]></text>
 			</staticText>
-			<textField pattern="#,##0.00#;(#,##0.00#-)">
+			<textField>
 				<reportElement x="220" y="110" width="60" height="30" uuid="f620215b-cc56-4d1f-97b6-8ae3224ed420"/>
 				<textFieldExpression><![CDATA[$V{SUMA_INTERES}]]></textFieldExpression>
 			</textField>
@@ -268,7 +268,7 @@
 				<reportElement x="350" y="110" width="50" height="30" uuid="a134ef60-d007-4855-bd36-fec5ad1a17d8"/>
 				<textFieldExpression><![CDATA[$V{SUMA_EXTRA}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00#;¤(#,##0.00#-)">
+			<textField>
 				<reportElement x="410" y="110" width="70" height="30" uuid="fba6beb9-3540-4516-b79b-d1b75cc36575"/>
 				<textFieldExpression><![CDATA[$V{TOTAL_GENERAL}]]></textFieldExpression>
 			</textField>

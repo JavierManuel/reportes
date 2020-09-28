@@ -28,5 +28,8 @@ public interface pago {
     @RequestMapping(value = "/detallesMoras/reporteMorasDias",method = RequestMethod.POST)
     public Map<String, Object> reporteMorasDias();
 
+    @RequestMapping(value = "/detallesSeguro/seguroCarteraFechas",method = RequestMethod.POST)
+    public Map<String, Object> generarReporteSeguroCarteraFechas(@Valid @RequestBody Map<String, Object> map);
+
 
 }

@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteInteresCarteraFechas" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="reporteInteresesCarteraFechasDTO1" uuid="ab5ed8dc-402a-4779-9d87-4e05538c9cc1">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="idPrestamo" class="java.lang.Long"/>
+		<field name="primerNombre" class="java.lang.String"/>
+		<field name="primerApellido" class="java.lang.String"/>
+		<field name="montoAsignado" class="java.lang.Double"/>
+		<field name="plazoMeses" class="java.lang.Integer"/>
+		<field name="nombrePlan" class="java.lang.String"/>
+		<field name="garantia" class="java.lang.String"/>
+		<field name="sumaTotal" class="java.lang.Double"/>
+		<variable name="totalUno" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{sumaTotal}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="reporteInteresesCarteraFechasDTO2" uuid="c1171a4d-a8b6-4ae9-aead-dfa68ac427c1">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="idPrestamo" class="java.lang.Long"/>
+		<field name="primerNombre" class="java.lang.String"/>
+		<field name="primerApellido" class="java.lang.String"/>
+		<field name="montoAsignado" class="java.lang.Double"/>
+		<field name="plazoMeses" class="java.lang.Integer"/>
+		<field name="nombrePlan" class="java.lang.String"/>
+		<field name="garantia" class="java.lang.String"/>
+		<field name="sumaTotal" class="java.lang.Double"/>
+		<variable name="suma" class="java.lang.String" calculation="Sum"/>
+	</subDataset>
+	<subDataset name="reporteInteresesCarteraFechasDTO3" uuid="dd0e7ef2-cf02-4982-9aba-2261c9df5501">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="idPrestamo" class="java.lang.Long"/>
+		<field name="primerNombre" class="java.lang.String"/>
+		<field name="primerApellido" class="java.lang.String"/>
+		<field name="montoAsignado" class="java.lang.Double"/>
+		<field name="plazoMeses" class="java.lang.Integer"/>
+		<field name="nombrePlan" class="java.lang.String"/>
+		<field name="garantia" class="java.lang.String"/>
+		<field name="sumaTotal" class="java.lang.Double"/>
+	</subDataset>
+	<subDataset name="reporteInteresesCarteraFechasDTO4" uuid="e1f0838c-2a1a-4104-8c3b-cfeea8da559f">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="idPrestamo" class="java.lang.Long"/>
+		<field name="primerNombre" class="java.lang.String"/>
+		<field name="primerApellido" class="java.lang.String"/>
+		<field name="montoAsignado" class="java.lang.Double"/>
+		<field name="plazoMeses" class="java.lang.Integer"/>
+		<field name="nombrePlan" class="java.lang.String"/>
+		<field name="garantia" class="java.lang.String"/>
+		<field name="sumaTotal" class="java.lang.Double"/>
+	</subDataset>
+	<subDataset name="reporteInteresesCarteraFechasDTO5" uuid="1345b3d2-f923-465e-822f-447bbbfe1725">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="idPrestamo" class="java.lang.Long"/>
+		<field name="primerNombre" class="java.lang.String"/>
+		<field name="primerApellido" class="java.lang.String"/>
+		<field name="montoAsignado" class="java.lang.Double"/>
+		<field name="plazoMeses" class="java.lang.Integer"/>
+		<field name="nombrePlan" class="java.lang.String"/>
+		<field name="garantia" class="java.lang.String"/>
+		<field name="sumaTotal" class="java.lang.Double"/>
+		<variable name="suma" class="java.lang.Double" calculation="System">
+			<variableExpression><![CDATA[$F{sumaTotal}]]></variableExpression>
+		</variable>
+		<variable name="totalGeneral" class="java.lang.Double" calculation="Sum"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idUsuarios" class="java.lang.Integer"/>
+	<field name="primerNombres" class="java.lang.String"/>
+	<field name="primerApellidos" class="java.lang.String"/>
+	<field name="direccions" class="java.lang.String"/>
+	<field name="emails" class="java.lang.String"/>
+	<field name="reporteInteresesCarteraFechasDTO1" class="java.util.List"/>
+	<field name="reporteInteresesCarteraFechasDTO2" class="java.util.List"/>
+	<field name="reporteInteresesCarteraFechasDTO3" class="java.util.List"/>
+	<field name="reporteInteresesCarteraFechasDTO4" class="java.util.List"/>
+	<field name="reporteInteresesCarteraFechasDTO5" class="java.util.List"/>
+	<field name="total1" class="java.lang.Double"/>
+	<field name="total2" class="java.lang.Double"/>
+	<field name="total3" class="java.lang.Double"/>
+	<field name="total4" class="java.lang.Double"/>
+	<field name="total5" class="java.lang.Double"/>
+	<variable name="total1" class="java.lang.Double" calculation="System">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{reporteInteresesCarteraFechasDTO2}.indexOf( "sumaTotal" )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total3" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{reporteInteresesCarteraFechasDTO3}.indexOf( "sumaTotal" )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total4" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{reporteInteresesCarteraFechasDTO4}.indexOf( "sumaTotal" )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total5" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{reporteInteresesCarteraFechasDTO5}.indexOf( "sumaTotal" )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalLiquido" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{total1}==null?0:$F{total1})+($F{total2}==null?0:$F{total2})+($F{total4}==null?0:$F{total4})]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalPendienteEjecucion" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{total3}==null?0:$F{total3})+($F{total5}==null?0:$F{total5})]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalGeneral" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($V{totalLiquido} == null ?  0:$V{totalLiquido})+($V{totalPendienteEjecucion} == null ?  0:$V{totalPendienteEjecucion})]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="180" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<staticText>
+				<reportElement x="0" y="90" width="150" height="25" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE USUARIO:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="80" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="415" y="10" width="50" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="465" y="10" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="10" y="10" width="150" height="55" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA["src/main/resources/reports/credi.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="170" y="0" width="235" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE SEGUROS POR CARTERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="55" width="315" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
+				<text><![CDATA[Teléfono: 77719197  e-mail: crediamigosoloma@hotmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="20" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
+				<text><![CDATA[3ra av 6-78 Zona 1 Barrio El Centro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="35" width="205" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
+				<text><![CDATA[San Pedro Soloma, Huehuetenango]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="120" width="80" height="17" uuid="e9c41167-192b-4503-8e35-f77dd602adeb"/>
+				<textFieldExpression><![CDATA[$F{idUsuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="120" width="81" height="17" uuid="4ede7f3b-94e5-4a5f-ac95-4e41c7437eff"/>
+				<textFieldExpression><![CDATA[$F{primerNombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="120" width="80" height="17" uuid="a4e4a802-3af0-4a71-af21-10e920459ee9"/>
+				<textFieldExpression><![CDATA[$F{primerApellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="137" width="60" height="23" uuid="496a914f-c656-4683-8417-0f41e4ba0ac5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="160" width="60" height="20" uuid="bcc031ea-8660-4753-9865-a710b0e3ff88"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="137" width="290" height="23" uuid="4a6f0d22-fcad-4fe5-8fc9-4109b98064c3"/>
+				<textFieldExpression><![CDATA[$F{direccions}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="160" width="290" height="20" uuid="a2c25526-b48c-4ea0-b332-e45e334cc683"/>
+				<textFieldExpression><![CDATA[$F{emails}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="20" uuid="807d0708-e341-43c4-8efd-a1310edc97c2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Crédito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="130" height="20" uuid="be4b684c-e85c-4c2d-ad89-287968a5519b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="1" width="80" height="19" uuid="c80bc65a-33e5-488b-87ba-e5532d79f09a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desembolso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="1" width="50" height="20" uuid="3f178e84-78e0-4a59-8c0e-94fdd3a59305"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plazo meses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="1" width="60" height="20" uuid="40257145-54aa-4c2f-b5f6-b8012a5b27cd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="60" height="20" uuid="3f4fb99a-6bff-4b81-aa1d-e7861fb73bea"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Garantía]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="60" height="20" uuid="ac4d5fbd-1bab-4e8f-88bf-d77fbf576280"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="97">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<componentElement>
+				<reportElement x="-1" y="30" width="556" height="30" uuid="0488a186-9303-4c3f-b1f8-f5119af34750"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="reporteInteresesCarteraFechasDTO1" uuid="92886e8c-fca0-4389-9e4e-abc9da8ed212">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteInteresesCarteraFechasDTO1})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="556">
+						<textField>
+							<reportElement x="0" y="0" width="50" height="30" uuid="045a9c8f-2669-4928-ae72-d88b58d972e3"/>
+							<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="50" y="0" width="90" height="30" uuid="64eb8705-9101-4aea-8b78-f39f4ead5c72"/>
+							<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="140" y="0" width="90" height="30" uuid="60f7098c-7bc3-4148-86e7-bdc5b75cc1aa"/>
+							<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="230" y="0" width="70" height="30" uuid="e03a13af-71c0-4d26-8df7-ea03a9825d80"/>
+							<textFieldExpression><![CDATA[$F{montoAsignado}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="300" y="0" width="60" height="30" uuid="18c96720-a522-4ab9-9a88-a7ad50ff4a38"/>
+							<textFieldExpression><![CDATA[$F{plazoMeses}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="360" y="0" width="60" height="30" uuid="327cf88d-4277-4374-9e41-84937dcabdd2"/>
+							<textFieldExpression><![CDATA[$F{nombrePlan}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="420" y="0" width="60" height="30" uuid="c9363d7a-3008-425e-a200-510712c4a2bc"/>
+							<textFieldExpression><![CDATA[$F{garantia}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="480" y="0" width="76" height="30" uuid="4ad72a28-c953-449f-b4b5-8f3c60a2b8b7"/>
+							<textFieldExpression><![CDATA[$F{sumaTotal}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="-1" y="0" width="556" height="20" uuid="cf08f654-e649-4630-bd8e-f2e71f21d43c"/>
+				<box>
+					<pen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seguros pagados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="66" width="40" height="20" uuid="7ead8d53-20f8-4fbb-946e-fffb35753e1f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="479" y="66" width="77" height="20" uuid="2743f247-ac22-4222-b893-9f1aae869628"/>
+				<textFieldExpression><![CDATA[($F{total1}==null)?0:$F{total1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="101">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="17" uuid="3733126a-5d04-42e3-a433-3caf64aa5f41"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seguros perdonados ejecutados]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="0" y="35" width="556" height="30" uuid="c982b7f6-499d-4911-b6d8-03aee0197f14"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="reporteInteresesCarteraFechasDTO1" uuid="aeda7687-b0f3-4fb3-8e72-327c374b1f00">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteInteresesCarteraFechasDTO2})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="556">
+						<textField>
+							<reportElement x="0" y="0" width="50" height="30" uuid="0f3522c5-1c21-44b2-a74f-387a6cffb499"/>
+							<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="50" y="0" width="90" height="30" uuid="8fccd9cb-004b-4943-bf54-da76d4e8902e"/>
+							<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="140" y="0" width="90" height="30" uuid="74e289ef-e81b-4f17-9e17-8955f216f960"/>
+							<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="230" y="0" width="70" height="30" uuid="5dfbc835-f13e-46db-83f3-b2f24afe6ee1"/>
+							<textFieldExpression><![CDATA[$F{montoAsignado}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="300" y="0" width="60" height="30" uuid="e7e9ac58-891e-423a-b8b1-c931cff9f12c"/>
+							<textFieldExpression><![CDATA[$F{plazoMeses}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="360" y="0" width="60" height="30" uuid="2c15b9eb-b82c-48c1-b07a-cd401979a4c2"/>
+							<textFieldExpression><![CDATA[$F{nombrePlan}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="420" y="0" width="60" height="30" uuid="08377205-7dd7-4ad2-93b0-f06eb001ef31"/>
+							<textFieldExpression><![CDATA[$F{garantia}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="480" y="0" width="76" height="30" uuid="fcda0c66-e551-45f9-bd66-099b122a4223"/>
+							<textFieldExpression><![CDATA[$F{sumaTotal}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="440" y="80" width="40" height="20" uuid="e9b19c15-5e0c-4f39-bb4c-8339e7a425c0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="80" width="76" height="20" uuid="17a429db-ee54-4ede-a049-e4379486ca83"/>
+				<textFieldExpression><![CDATA[($F{total2}==null)?0:$F{total2}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="110">
+			<staticText>
+				<reportElement x="440" y="90" width="40" height="20" uuid="98852f1f-a148-4ae6-93da-ab715c5e795e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="0" y="30" width="556" height="30" uuid="3d264709-219a-4394-9ef4-a764e224eb8b"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="reporteInteresesCarteraFechasDTO1" uuid="8728f8fa-fc59-4cbd-9aa7-ebde36579944">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteInteresesCarteraFechasDTO3})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="556">
+						<textField>
+							<reportElement x="0" y="0" width="50" height="30" uuid="2be34223-918c-4fc6-afd3-2a3d24a630ec"/>
+							<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="50" y="0" width="90" height="30" uuid="7e781229-6014-4d6d-aa5c-b6360a551b99"/>
+							<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="140" y="0" width="90" height="30" uuid="6385ef34-36a6-4b1d-bea9-3b8109a8b7df"/>
+							<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="230" y="0" width="70" height="30" uuid="ee8127d6-7497-4076-b276-d1ac63d20262"/>
+							<textFieldExpression><![CDATA[$F{montoAsignado}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="300" y="0" width="60" height="30" uuid="c39a01a1-4360-4559-bced-61e5c0d9d71e"/>
+							<textFieldExpression><![CDATA[$F{plazoMeses}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="360" y="0" width="60" height="30" uuid="8d13cfce-5ba9-4eba-a5fe-22898a760d28"/>
+							<textFieldExpression><![CDATA[$F{nombrePlan}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="420" y="0" width="60" height="30" uuid="24b0782a-ac74-424f-a1fb-5ce5e74d883a"/>
+							<textFieldExpression><![CDATA[$F{garantia}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="480" y="0" width="76" height="30" uuid="bdad9ea2-b8dc-4ec4-b31c-d7d24623e5ad"/>
+							<textFieldExpression><![CDATA[$F{sumaTotal}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="43e11584-bb66-4980-8946-966898353b85"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seguros perdonados pendientes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="90" width="76" height="19" uuid="1264233a-4910-42fc-b7d6-01c56bed873b"/>
+				<textFieldExpression><![CDATA[($F{total3}==null)?0:$F{total3}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="110">
+			<staticText>
+				<reportElement x="440" y="90" width="40" height="20" uuid="bc21d078-8372-4831-94de-68fb6cbf0eea"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="0" y="29" width="556" height="30" uuid="0623cd71-a93e-4838-8679-005e23cbf704"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="reporteInteresesCarteraFechasDTO1" uuid="e4808876-dfb4-4e4d-ac49-dea5f4e476c8">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteInteresesCarteraFechasDTO4})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="556">
+						<textField>
+							<reportElement x="0" y="0" width="50" height="30" uuid="6f05e2e3-4834-4222-b646-69e6b7a447cf"/>
+							<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="50" y="0" width="90" height="30" uuid="abf11681-27a3-456c-bf33-cc3fad838915"/>
+							<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="140" y="0" width="90" height="30" uuid="2e90dac9-01b8-4256-950f-daa96254be5c"/>
+							<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="230" y="0" width="70" height="30" uuid="97122ac1-3f40-46ae-bb7f-6e3a1b781fb0"/>
+							<textFieldExpression><![CDATA[$F{montoAsignado}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="300" y="0" width="60" height="30" uuid="e32c8b56-fabf-4023-91bf-65c12c88eab3"/>
+							<textFieldExpression><![CDATA[$F{plazoMeses}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="360" y="0" width="60" height="30" uuid="a81963d9-38e3-4bd9-ae88-ba2d36ad4b03"/>
+							<textFieldExpression><![CDATA[$F{nombrePlan}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="420" y="0" width="60" height="30" uuid="b9f46de8-b7b4-46de-b92e-92e125009c55"/>
+							<textFieldExpression><![CDATA[$F{garantia}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="480" y="0" width="76" height="30" uuid="ea8dc8d9-b2b2-4f5d-b947-3d94bcd84096"/>
+							<textFieldExpression><![CDATA[$F{sumaTotal}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="654db1ab-0081-4172-8087-5fce23dc6101"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seguros pendientes pagados]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="479" y="91" width="76" height="19" uuid="ce5501f0-50bd-43e8-a326-e14a8c6041e9"/>
+				<textFieldExpression><![CDATA[($F{total4}==null)?0:$F{total4}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="101">
+			<componentElement>
+				<reportElement x="0" y="20" width="555" height="30" uuid="923c3c48-c9b5-4858-855b-869ce504019c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="reporteInteresesCarteraFechasDTO1" uuid="d7f56c92-ed21-4a56-b446-b1b033a2d8a5">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteInteresesCarteraFechasDTO5})]]></dataSourceExpression>
+						<returnValue fromVariable="totalUno" toVariable="total1"/>
+					</datasetRun>
+					<jr:listContents height="30" width="555">
+						<textField>
+							<reportElement x="0" y="0" width="50" height="30" uuid="2eeb717d-b053-4c1c-b030-74ddf8c24b7a"/>
+							<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="50" y="0" width="90" height="30" uuid="69b047f7-a25b-43d7-9d5e-d170633749d2"/>
+							<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="140" y="0" width="90" height="30" uuid="e3a50643-9b56-474c-922c-252538eeb7a1"/>
+							<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="230" y="0" width="70" height="30" uuid="dac89944-d3a3-4b02-850c-9efd639a66e0"/>
+							<textFieldExpression><![CDATA[$F{montoAsignado}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="300" y="0" width="60" height="30" uuid="74714a69-c9d9-4854-be1d-f09a242e8573"/>
+							<textFieldExpression><![CDATA[$F{plazoMeses}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="360" y="0" width="60" height="30" uuid="5856820c-18d4-4326-bcc5-cc7516858566"/>
+							<textFieldExpression><![CDATA[$F{nombrePlan}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="420" y="0" width="60" height="30" uuid="25209cdd-c8e6-41b0-97ca-4dce3ba7bc0a"/>
+							<textFieldExpression><![CDATA[$F{garantia}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="480" y="0" width="65" height="30" uuid="7943dac6-155b-41d6-b174-09b13cab74f7"/>
+							<textFieldExpression><![CDATA[$F{sumaTotal}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="556" height="20" uuid="ef23eef6-f0ec-4c3f-9ee3-d88ce19e29d6"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seguros pendientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="80" width="40" height="20" uuid="50daec03-3a33-4010-8804-d081149b787d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="80" width="76" height="21" uuid="ff490eff-0534-4de7-a400-6105bbb15e69"/>
+				<textFieldExpression><![CDATA[($F{total5}==null)?0:$F{total5}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="177">
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="147" width="556" height="30" backcolor="#E6E8E9" uuid="36aa233d-4305-48e6-974a-1bbf89bb3c8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE SEGUROS POR CARTERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="20" width="100" height="20" uuid="909103de-cd63-4030-892c-aae5bb41d21b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Líquido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="20" width="150" height="20" uuid="da8ab6c1-c347-4124-9eca-d0f37e8418d0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pendiente de ejecución]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="40" width="100" height="20" uuid="297492c7-d4f4-4465-b4f1-6846f1441a67"/>
+				<textFieldExpression><![CDATA[$V{totalLiquido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="40" width="100" height="20" uuid="2310f90a-9a8c-4607-903d-1cdaa2366b43"/>
+				<textFieldExpression><![CDATA[$V{totalPendienteEjecucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="40" width="100" height="20" uuid="1b591a5c-3365-4df3-b31e-cfbccb23407e"/>
+				<textFieldExpression><![CDATA[$V{totalGeneral}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="20" width="100" height="20" uuid="345119ba-e9dc-4eb6-8a68-759c005580a9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total General]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>
