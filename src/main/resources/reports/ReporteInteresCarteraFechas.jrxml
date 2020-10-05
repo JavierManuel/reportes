@@ -395,7 +395,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="479" y="3" width="77" height="20" uuid="2743f247-ac22-4222-b893-9f1aae869628"/>
-				<textFieldExpression><![CDATA[($F{total1}==null)?0:$F{total1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($F{total1}==null)?0:$F{total1})]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="67">
@@ -462,7 +462,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="480" y="-1" width="76" height="20" uuid="17a429db-ee54-4ede-a049-e4379486ca83"/>
-				<textFieldExpression><![CDATA[($F{total2}==null)?0:$F{total2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($F{total2}==null)?0:$F{total2})]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="61">
@@ -529,7 +529,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="480" y="0" width="76" height="19" uuid="1264233a-4910-42fc-b7d6-01c56bed873b"/>
-				<textFieldExpression><![CDATA[($F{total3}==null)?0:$F{total3}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($F{total3}==null)?0:$F{total3})]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="61">
@@ -596,7 +596,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="480" y="0" width="75" height="19" uuid="ce5501f0-50bd-43e8-a326-e14a8c6041e9"/>
-				<textFieldExpression><![CDATA[($F{total4}==null)?0:$F{total4}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($F{total4}==null)?0:$F{total4})]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="53">
@@ -666,7 +666,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="480" y="0" width="76" height="21" uuid="ff490eff-0534-4de7-a400-6105bbb15e69"/>
-				<textFieldExpression><![CDATA[($F{total5}==null)?0:$F{total5}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($F{total5}==null)?0:$F{total5})]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -695,15 +695,15 @@
 			</staticText>
 			<textField>
 				<reportElement x="80" y="40" width="100" height="20" uuid="297492c7-d4f4-4465-b4f1-6846f1441a67"/>
-				<textFieldExpression><![CDATA[$V{totalLiquido}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($V{totalLiquido}==null)?0:$V{totalLiquido})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="180" y="40" width="100" height="20" uuid="2310f90a-9a8c-4607-903d-1cdaa2366b43"/>
-				<textFieldExpression><![CDATA[$V{totalPendienteEjecucion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($V{totalPendienteEjecucion}==null)?0:$V{totalPendienteEjecucion})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="330" y="40" width="100" height="20" uuid="1b591a5c-3365-4df3-b31e-cfbccb23407e"/>
-				<textFieldExpression><![CDATA[$V{totalGeneral}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(($V{totalGeneral}==null)?0:$V{totalGeneral})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="330" y="20" width="100" height="20" uuid="345119ba-e9dc-4eb6-8a68-759c005580a9"/>
