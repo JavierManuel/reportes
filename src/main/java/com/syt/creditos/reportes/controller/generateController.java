@@ -265,7 +265,6 @@ public class generateController {
 
             UsuarioDTO encabezado = new UsuarioDTO();
             Collection<UsuarioDTO> todo = new ArrayList<>();
-
             if (detallePago != null) {
                 ArrayList ob = (ArrayList) detallePago.get("encabezado");
 
