@@ -506,16 +506,17 @@ public class generateController {
         return new ResponseEntity<byte[]>(data, HttpStatus.OK);
     }
 
-
+    public  List<Map<String, Object>> resultado;
 
 
     @RequestMapping(value = "reporteMorasDias", method = RequestMethod.POST, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+
     public ResponseEntity<byte[]> reporteMorasDias() {
+
         byte[] data = null;
         try {
 
             Map<String, Object> detallePago = pagoFeing.reporteMorasDias();
-
             System.out.println(detallePago.get("detalle"));
 
 //            Map<String, Object> item = new HashMap<String, Object>();
@@ -542,6 +543,8 @@ public class generateController {
 
                     // en mora ya contando
                     if (dias > 3){
+
+
                         ReporteMorasUnoDTO report = new ReporteMorasUnoDTO();
                         report.setIdPrestamo(Long.parseLong(objects.get(0).toString()));
                         report.setPrimerNombre(objects.get(1).toString());
@@ -583,6 +586,7 @@ public class generateController {
                 Map<String, Object> map = oMapper.convertValue(encabezado, Map.class);
                 List<Map<String, Object>> result = new ArrayList<>();
                 result.add(map);
+                this.resultado = result;
                 System.out.println("result");
                 System.out.println(result);
                 InputStream inputStream = this.getClass().getResourceAsStream("/reports/ReporteMorasPorDia.jrxml");

@@ -1,5 +1,9 @@
 package com.syt.creditos.reportes.controller;
 
+import com.syt.creditos.reportes.dto.ReporteMorasDTO;
+import com.syt.creditos.reportes.dto.ReporteMorasDosGraciaDTO;
+import com.syt.creditos.reportes.dto.ReporteMorasUnoDTO;
+import com.syt.creditos.reportes.dto.UsuarioDTO2;
 import com.syt.creditos.reportes.feingService.pago;
 import com.syt.creditos.reportes.service.ExcelReport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -75,12 +80,72 @@ public class generateExcelController {
 
 
     @PostMapping(value = "/reporteMorasDias")
-    public ResponseEntity<InputStreamResource> reporteMorasDias() throws IOException {
+    public ResponseEntity<InputStreamResource> reporteMorasDias() throws IOException, ParseException {
 
-//        Map<String, Object> detallePago = pagoFeing.generarReporteCreditosCartera(map);
-        Map<String, Object> detalle = pagoFeing.reporteMorasDias();
-        System.out.println(detalle.get("detalle"));
-        ArrayList ob = (ArrayList) detalle.get("detalle");
+
+        Map<String, Object> detallePago = pagoFeing.reporteMorasDias();
+        System.out.println(detallePago.get("detalle"));
+
+//            Map<String, Object> item = new HashMap<String, Object>();
+//            item.put("pago", Double.parseDouble(params.get("montoPagado").toString()));
+
+        ReporteMorasDTO encabezado = new ReporteMorasDTO();
+        Collection<UsuarioDTO2> todo = new ArrayList<>();
+        ArrayList<Object> detalle = (ArrayList<Object>) detallePago.get("detalle");
+        ArrayList<Object> reportDto1 = new ArrayList<>();
+        ArrayList<Object> reportDto2 = new ArrayList<>();
+
+        if (detallePago != null) {
+
+
+
+            Double cont1 = 0.00, cont2 = 0.00;
+            Date date = new Date();
+
+            for(Integer i = 0; i < detalle.size(); i++){
+                ArrayList objects = (ArrayList) detalle.get(i);
+
+                Date fechaIni = new SimpleDateFormat("yyyy-MM-dd").parse(objects.get(5).toString());
+                Long dias = ((date.getTime() - fechaIni.getTime())/86400000);
+                System.out.println(dias);
+
+                // en mora ya contando
+                if (dias > 3){
+                    ArrayList<String> report = new ArrayList<>();
+                    report.add(objects.get(0).toString());
+                    report.add(objects.get(1).toString());
+                    report.add(objects.get(2).toString());
+                    report.add(objects.get(3).toString());
+                    report.add(objects.get(4).toString());
+                    report.add(dias.toString());
+                    report.add(String.valueOf((dias*Double.parseDouble(objects.get(4).toString()))));
+                    reportDto1.add(report);
+//                    cont1 += report.getTotalMora();
+//                    if(cont1 == null){
+//                        encabezado.setTotal1(0.00);
+//                    } else {
+//                        encabezado.setTotal1(cont1);
+//                    }
+//                    encabezado.setReporteMorasUnoDTO(reportDto1);
+                } else {
+
+//                    ReporteMorasDosGraciaDTO report = new ReporteMorasDosGraciaDTO();
+                    ArrayList<String> report = new ArrayList<>();
+                    report.add(objects.get(0).toString());
+                    report.add(objects.get(1).toString());
+                    report.add(objects.get(2).toString());
+                    report.add(objects.get(3).toString());
+                    report.add(objects.get(4).toString());
+                    report.add(dias.toString());
+                    reportDto2.add(report);
+//                    encabezado.setReporteMorasDosGraciaDTO(reportDto2);
+
+                }
+
+
+            }
+        }
+
         ArrayList<String> array = new ArrayList<>();
         array.add("Crédito");
         array.add("Nombre");
@@ -97,8 +162,8 @@ public class generateExcelController {
         array2.add("Mora asignada");
         array2.add("Dias de gracia");
 
-
-        ByteArrayInputStream in = excelReport.generarExcel(array, ob);
+//        ByteArrayInputStream in = excelReport.generarExcel(array, encabezado.getReporteMorasUnoDTO());
+        ByteArrayInputStream in = excelReport.generarExcel2(array, reportDto1, array2, reportDto2);
         // return IO ByteArray(in);
         HttpHeaders headers = new HttpHeaders();
         // set filename in header
