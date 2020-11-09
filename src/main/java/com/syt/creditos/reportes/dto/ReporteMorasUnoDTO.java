@@ -11,21 +11,31 @@ public class ReporteMorasUnoDTO {
     String primerApellido;
     Double montoAsignado;
     Double moraAsignada;
+    int cuotasAtrasadas;
     Long diasAtraso;
     Double totalMora;
 
 
-    public ReporteMorasUnoDTO(Long idPrestamo, String primerNombre, String primerApellido, Double montoAsignado, Double moraAsignada, Long diasAtraso, Double totalMora) {
+    public ReporteMorasUnoDTO(Long idPrestamo, String primerNombre, String primerApellido, Double montoAsignado, Double moraAsignada, int cuotasAtrasadas, Long diasAtraso, Double totalMora) {
         this.idPrestamo = idPrestamo;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
         this.montoAsignado = montoAsignado;
         this.moraAsignada = moraAsignada;
+        this.cuotasAtrasadas = cuotasAtrasadas;
         this.diasAtraso = diasAtraso;
         this.totalMora = totalMora;
     }
 
     public ReporteMorasUnoDTO() {
+    }
+
+    public int getCuotasAtrasadas() {
+        return cuotasAtrasadas;
+    }
+
+    public void setCuotasAtrasadas(int cuotasAtrasadas) {
+        this.cuotasAtrasadas = cuotasAtrasadas;
     }
 
     public Long getIdPrestamo() {

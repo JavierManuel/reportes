@@ -89,6 +89,7 @@ public class generateExcelController {
 
 
         Map<String, Object> detallePago = pagoFeing.reporteMorasDias();
+        System.out.println("detalle");
         System.out.println(detallePago.get("detalle"));
 
 //            Map<String, Object> item = new HashMap<String, Object>();
@@ -116,25 +117,29 @@ public class generateExcelController {
 
                 // en mora ya contando
                 if (dias > 3){
+
+                    int mes = fechaIni.getMonth();
+
+//                    System.out.println("mes");
+//                    System.out.println(mes +1);
+                    System.out.println("resta mes");
+//                    System.out.println(date.getMonth()+1);
+                    System.out.println( (date.getMonth()+1)-(mes+1));
+                    int restaMes = (date.getMonth()+1)-(mes+1);
+
                     ArrayList<String> report = new ArrayList<>();
                     report.add(objects.get(0).toString());
                     report.add(objects.get(1).toString());
                     report.add(objects.get(2).toString());
                     report.add(objects.get(3).toString());
                     report.add(objects.get(4).toString());
+                    report.add(String.valueOf((restaMes +1)));
                     report.add(dias.toString());
                     report.add(String.valueOf((dias*Double.parseDouble(objects.get(4).toString()))));
                     reportDto1.add(report);
-//                    cont1 += report.getTotalMora();
-//                    if(cont1 == null){
-//                        encabezado.setTotal1(0.00);
-//                    } else {
-//                        encabezado.setTotal1(cont1);
-//                    }
-//                    encabezado.setReporteMorasUnoDTO(reportDto1);
+
                 } else {
 
-//                    ReporteMorasDosGraciaDTO report = new ReporteMorasDosGraciaDTO();
                     ArrayList<String> report = new ArrayList<>();
                     report.add(objects.get(0).toString());
                     report.add(objects.get(1).toString());
@@ -143,7 +148,6 @@ public class generateExcelController {
                     report.add(objects.get(4).toString());
                     report.add(dias.toString());
                     reportDto2.add(report);
-//                    encabezado.setReporteMorasDosGraciaDTO(reportDto2);
 
                 }
 
@@ -157,8 +161,9 @@ public class generateExcelController {
         array.add("Apellido");
         array.add("Desembolso");
         array.add("Mora asignada");
+        array.add("Cuotas atrasadas");
         array.add("Dias de atraso");
-        array.add("Total mora");
+        array.add("Total mora acumulada");
         ArrayList<String> array2 = new ArrayList<>();
         array2.add("Crédito");
         array2.add("Nombre");
@@ -513,5 +518,171 @@ public class generateExcelController {
         }
         return new ResponseEntity<byte[]>(data, HttpStatus.OK);
     }*/
+
+    @PostMapping(value = "/seguroCarteraFechas")
+    public ResponseEntity<InputStreamResource> generarReporteSeguroCarteraFechas(@Valid @RequestBody Map<String, Object> map) throws IOException {
+
+        Map<String, Object> detallePago = pagoFeing.generarReporteSeguroCarteraFechas(map);
+
+        UsuarioDTO2 encabezado = new UsuarioDTO2();
+        Collection<UsuarioDTO2> todo = new ArrayList<>();
+        ArrayList ob = (ArrayList) detallePago.get("encabezado");
+        String user = ob.get(1).toString();
+        String user2 = ob.get(2).toString();
+        String usuario = user + " " + user2;
+
+        ArrayList<Object> detalleCartera = (ArrayList<Object>) detallePago.get("detalleCartera");
+        ArrayList<Object> reportDto1 = new ArrayList<>();
+        ArrayList<Object> reportDto2 = new ArrayList<>();
+        ArrayList<Object> reportDto3 = new ArrayList<>();
+        ArrayList<Object> reportDto4 = new ArrayList<>();
+        ArrayList<Object> reportDto5 = new ArrayList<>();
+        Double cont1 = 0.00, cont2 = 0.00, cont3 = 0.00, cont4 = 0.00, cont5 = 0.00;
+        for(Integer i = 0; i < detalleCartera.size(); i++){
+            ArrayList objects = (ArrayList) detalleCartera.get(i);
+            Boolean estadoInteres = (Boolean) objects.get(8);
+            Integer idEstado = Integer.parseInt(objects.get(9).toString());
+            System.out.println("-----vuelta----- " + i);
+            System.out.println(objects.get(0).toString());
+            System.out.println(estadoInteres);
+            System.out.println(idEstado);
+            System.out.println(objects.get(7).toString());
+            // 0 y 1
+            if (!estadoInteres && idEstado == 1 ){
+                //ReporteInteresesCarteraFechasDTO report = new ReporteInteresesCarteraFechasDTO();
+                ArrayList<String> report = new ArrayList<>();
+                report.add(objects.get(0).toString());
+                report.add(objects.get(1).toString());
+                report.add(objects.get(2).toString());
+                report.add((objects.get(3).toString()));
+                report.add((objects.get(4).toString()));
+                report.add(objects.get(5).toString());
+                report.add(objects.get(6).toString());
+                report.add((objects.get(7).toString()));
+                report.add(objects.get(8).toString());
+                report.add((objects.get(9).toString()));
+                report.add(objects.get(10).toString());
+                reportDto1.add(report);
+                cont1 += Double.parseDouble(objects.get(7).toString());
+                encabezado.setTotal1(cont1);
+                //encabezado.setReporteInteresesCarteraFechasDTO1(reportDto1);
+            }
+            // 0 y 2
+            if (!estadoInteres && idEstado == 2 ){
+                //ReporteInteresesCarteraFechasDTO report = new ReporteInteresesCarteraFechasDTO();
+                ArrayList<String> report = new ArrayList<>();
+                report.add((objects.get(0).toString()));
+                report.add(objects.get(1).toString());
+                report.add(objects.get(2).toString());
+                report.add((objects.get(3).toString()));
+                report.add((objects.get(4).toString()));
+                report.add(objects.get(5).toString());
+                report.add(objects.get(6).toString());
+                report.add((objects.get(7).toString()));
+                report.add(objects.get(8).toString());
+                report.add((objects.get(9).toString()));
+                report.add(objects.get(10).toString());
+                reportDto2.add(report);
+                cont2 += Double.parseDouble(objects.get(7).toString());
+                if(cont2 == null){
+                    encabezado.setTotal2(0.00);
+                } else {
+                    encabezado.setTotal2(cont2);
+                }
+
+                //encabezado.setReporteInteresesCarteraFechasDTO2(reportDto2);
+            }
+            // 1 y 2
+            if (estadoInteres && idEstado == 2 ){
+                //ReporteInteresesCarteraFechasDTO report = new ReporteInteresesCarteraFechasDTO();
+                ArrayList<String> report = new ArrayList<>();
+                report.add((objects.get(0).toString()));
+                report.add(objects.get(1).toString());
+                report.add(objects.get(2).toString());
+                report.add((objects.get(3).toString()));
+                report.add((objects.get(4).toString()));
+                report.add(objects.get(5).toString());
+                report.add(objects.get(6).toString());
+                report.add((objects.get(7).toString()));
+                report.add(objects.get(8).toString());
+                report.add((objects.get(9).toString()));
+                report.add(objects.get(10).toString());
+                reportDto3.add(report);
+                cont3 += Double.parseDouble(objects.get(7).toString());
+                if(cont3 == null){
+                    encabezado.setTotal3(0.00);
+                } else {
+                    encabezado.setTotal3(cont3);
+                }
+                //encabezado.setReporteInteresesCarteraFechasDTO3(reportDto3);
+            }
+            // 0 y 3
+            if (!estadoInteres && idEstado == 3 ){
+                ReporteInteresesCarteraFechasDTO report = new ReporteInteresesCarteraFechasDTO();
+                report.setIdPrestamo(Long.parseLong(objects.get(0).toString()));
+                report.setPrimerNombre(objects.get(1).toString());
+                report.setPrimerApellido(objects.get(2).toString());
+                report.setMontoAsignado(Double.parseDouble(objects.get(3).toString()));
+                report.setPlazoMeses( Integer.parseInt(objects.get(4).toString()));
+                report.setNombrePlan(objects.get(5).toString());
+                report.setGarantia(objects.get(6).toString());
+                report.setSumaTotal(Double.parseDouble(objects.get(7).toString()));
+                report.setEstadoInteres((Boolean) objects.get(8));
+                report.setEstadoPerdon(Integer.parseInt(objects.get(9).toString()));
+                report.setNombrePerdon(objects.get(10).toString());
+                reportDto4.add(report);
+                cont4 += Double.parseDouble(objects.get(7).toString());
+                if(cont4 == null){
+                    encabezado.setTotal4(0.00);
+                } else {
+                    encabezado.setTotal4(cont4);
+                }
+
+                //encabezado.setReporteInteresesCarteraFechasDTO4(reportDto4);
+            }
+            // 1 y 3
+            if (estadoInteres && idEstado == 3 ){
+                ReporteInteresesCarteraFechasDTO report = new ReporteInteresesCarteraFechasDTO();
+                report.setIdPrestamo(Long.parseLong(objects.get(0).toString()));
+                report.setPrimerNombre(objects.get(1).toString());
+                report.setPrimerApellido(objects.get(2).toString());
+                report.setMontoAsignado(Double.parseDouble(objects.get(3).toString()));
+                report.setPlazoMeses( Integer.parseInt(objects.get(4).toString()));
+                report.setNombrePlan(objects.get(5).toString());
+                report.setGarantia(objects.get(6).toString());
+                report.setSumaTotal(Double.parseDouble(objects.get(7).toString()));
+                report.setEstadoInteres((Boolean) objects.get(8));
+                report.setEstadoPerdon(Integer.parseInt(objects.get(9).toString()));
+                report.setNombrePerdon(objects.get(10).toString());
+                reportDto5.add(report);
+                cont5 += Double.parseDouble(objects.get(7).toString());
+                if(cont5 == null){
+                    encabezado.setTotal5(0.00);
+                } else {
+                    encabezado.setTotal5(cont5);
+                }
+                //encabezado.setReporteInteresesCarteraFechasDTO5(reportDto5);
+            }
+        }
+
+        ArrayList<String> array = new ArrayList<>();
+        array.add("Crédito");
+        array.add("Nombre");
+        array.add("Apellido");
+        array.add("Desembolso");
+        array.add("Plazo");
+        array.add("Plan");
+        array.add("Garantía");
+        array.add("Total mora acumulada");
+
+
+        ByteArrayInputStream in = excelReport.generarExcelSeguro(usuario, array, reportDto1, reportDto2, reportDto3, reportDto4,
+                reportDto5);
+        // return IO ByteArray(in);
+        HttpHeaders headers = new HttpHeaders();
+        // set filename in header
+        headers.add("Content-Disposition", "attachment; filename=subVariables.xlsx");
+        return ResponseEntity.ok().headers(headers).body(new InputStreamResource(in));
+    }
 
 }

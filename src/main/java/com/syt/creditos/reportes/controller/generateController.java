@@ -543,14 +543,15 @@ public class generateController {
 
                     // en mora ya contando
                     if (dias > 3){
-
-
+                        int mes = fechaIni.getMonth();
+                        int restaMes = (date.getMonth()+1)-(mes+1);
                         ReporteMorasUnoDTO report = new ReporteMorasUnoDTO();
                         report.setIdPrestamo(Long.parseLong(objects.get(0).toString()));
                         report.setPrimerNombre(objects.get(1).toString());
                         report.setPrimerApellido(objects.get(2).toString());
                         report.setMontoAsignado(Double.parseDouble(objects.get(3).toString()));
                         report.setMoraAsignada(Double.parseDouble(objects.get(4).toString()));
+                        report.setCuotasAtrasadas((restaMes +1));
                         report.setDiasAtraso(dias);
                         report.setTotalMora(dias*Double.parseDouble(objects.get(4).toString()));
                         reportDto1.add(report);

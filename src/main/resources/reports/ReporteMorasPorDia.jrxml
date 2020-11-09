@@ -68,6 +68,7 @@
 		<field name="moraAsignada" class="java.lang.Double"/>
 		<field name="diasAtraso" class="java.lang.Long"/>
 		<field name="totalMora" class="java.lang.Double"/>
+		<field name="cuotasAtrasadas" class="java.lang.Integer"/>
 	</subDataset>
 	<subDataset name="reporteMorasDosGraciaDTO" uuid="c2c01b33-182a-4635-8d99-040b732c55f7">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -139,7 +140,7 @@
 		<band height="20"/>
 	</columnHeader>
 	<detail>
-		<band height="124">
+		<band height="73">
 			<staticText>
 				<reportElement x="-1" y="0" width="556" height="20" uuid="359054a1-5162-4421-96ba-54f77f7f85f5"/>
 				<box>
@@ -152,7 +153,7 @@
 			</staticText>
 			<componentElement>
 				<reportElement x="0" y="40" width="555" height="30" uuid="fb6cb364-b004-4d4a-b211-7945d54ae057"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="reporteMorasUnoDTO" uuid="dd0ea658-da4c-4e5f-9e8b-f36bb8378071">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteMorasUnoDTO})]]></dataSourceExpression>
 					</datasetRun>
@@ -162,28 +163,32 @@
 							<textFieldExpression><![CDATA[$F{idPrestamo}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="50" y="0" width="70" height="30" uuid="0facc80a-d0fc-4d99-afc0-5c2b7c170bd8"/>
+							<reportElement x="50" y="0" width="50" height="30" uuid="0facc80a-d0fc-4d99-afc0-5c2b7c170bd8"/>
 							<textFieldExpression><![CDATA[$F{primerNombre}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="120" y="0" width="80" height="30" uuid="58c8cb28-7dde-4c0e-ac1a-d655bf57320d"/>
+							<reportElement x="100" y="0" width="60" height="30" uuid="58c8cb28-7dde-4c0e-ac1a-d655bf57320d"/>
 							<textFieldExpression><![CDATA[$F{primerApellido}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="210" y="0" width="60" height="30" uuid="cae12e35-8b7c-4eaa-865f-f7449f300e52"/>
+							<reportElement x="170" y="0" width="60" height="30" uuid="cae12e35-8b7c-4eaa-865f-f7449f300e52"/>
 							<textFieldExpression><![CDATA[$F{montoAsignado}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="290" y="0" width="70" height="30" uuid="57eb9f80-0988-476c-870d-ea464fa937e8"/>
+							<reportElement x="250" y="0" width="70" height="30" uuid="57eb9f80-0988-476c-870d-ea464fa937e8"/>
 							<textFieldExpression><![CDATA[$F{moraAsignada}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="400" y="0" width="50" height="30" uuid="24a47ced-8c72-42fb-b98d-df0707050c0a"/>
+							<reportElement x="410" y="0" width="50" height="30" uuid="24a47ced-8c72-42fb-b98d-df0707050c0a"/>
 							<textFieldExpression><![CDATA[$F{diasAtraso}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="465" y="0" width="90" height="30" uuid="057b9dad-7c77-4fc7-9b7b-f5f9f508f64b"/>
+							<reportElement x="480" y="0" width="75" height="30" uuid="057b9dad-7c77-4fc7-9b7b-f5f9f508f64b"/>
 							<textFieldExpression><![CDATA[$F{totalMora}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="340" y="0" width="60" height="30" uuid="f936bac3-8c23-4fbf-b327-e1ef75d710b4"/>
+							<textFieldExpression><![CDATA[$F{cuotasAtrasadas}]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>
@@ -197,27 +202,33 @@
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="210" y="20" width="70" height="20" uuid="a819f95f-f13f-49bd-8b97-8c04b3aa65de"/>
+				<reportElement x="150" y="20" width="70" height="20" uuid="a819f95f-f13f-49bd-8b97-8c04b3aa65de"/>
 				<text><![CDATA[Desembolso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="20" width="85" height="20" uuid="52b91bcc-7097-47ab-9f1e-af6e55683cb4"/>
+				<reportElement x="230" y="20" width="75" height="20" uuid="52b91bcc-7097-47ab-9f1e-af6e55683cb4"/>
 				<text><![CDATA[Mora asignada]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="20" width="100" height="20" uuid="677f6562-32f7-4c67-a257-2309af73b953"/>
+				<reportElement x="400" y="20" width="80" height="20" uuid="677f6562-32f7-4c67-a257-2309af73b953"/>
 				<text><![CDATA[Días atraso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="470" y="20" width="100" height="20" uuid="210629c7-da81-4db8-a9ea-a4764ffc77b7"/>
+				<reportElement x="484" y="20" width="60" height="20" uuid="210629c7-da81-4db8-a9ea-a4764ffc77b7"/>
 				<text><![CDATA[Total mora]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="403" y="90" width="77" height="17" uuid="42f1ba43-456f-411d-9733-568a720fb23f"/>
+				<reportElement x="305" y="20" width="95" height="20" uuid="9164c7f6-ccf4-419d-ab05-3dda8d0babb8"/>
+				<text><![CDATA[Cuotas atrasadas]]></text>
+			</staticText>
+		</band>
+		<band height="34">
+			<staticText>
+				<reportElement x="403" y="13" width="77" height="17" uuid="42f1ba43-456f-411d-9733-568a720fb23f"/>
 				<text><![CDATA[Total General:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="90" width="75" height="17" uuid="f74deeb0-984d-4650-9771-9a6d996772a5">
+				<reportElement x="480" y="13" width="75" height="17" uuid="f74deeb0-984d-4650-9771-9a6d996772a5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c3eb5bd4-cb52-4e19-9a4c-67188eaa0610"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{total1}]]></textFieldExpression>
@@ -236,7 +247,7 @@
 			</staticText>
 			<componentElement>
 				<reportElement x="0" y="50" width="565" height="30" uuid="142ecbf9-c7e5-41ba-adf8-8c901bd9bf61"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="reporteMorasDosGraciaDTO" uuid="65af51a7-3510-4e8a-ab55-308b12c2626a">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{reporteMorasDosGraciaDTO})]]></dataSourceExpression>
 					</datasetRun>
