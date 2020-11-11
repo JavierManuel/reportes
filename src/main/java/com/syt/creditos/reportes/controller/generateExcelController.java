@@ -673,7 +673,7 @@ public class generateExcelController {
         array.add("Plazo");
         array.add("Plan");
         array.add("Garantía");
-        array.add("Total mora acumulada");
+        array.add("Total");
 
 
         ByteArrayInputStream in = excelReport.generarExcelSeguro(usuario, array, reportDto1, reportDto2, reportDto3, reportDto4,
