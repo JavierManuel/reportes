@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Map;
 
 @FeignClient(name = "credit-process")
+//@FeignClient(url = "https://proc.micrediamigo.com", name = "credit-process")
 public interface pago {
 
     @RequestMapping(value = "/detallesPagos/reportePagosFecha",method = RequestMethod.POST)

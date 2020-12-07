@@ -174,7 +174,7 @@
 			<staticText>
 				<reportElement x="102" y="2" width="350" height="20" uuid="5cbad7c8-26cd-42a3-bd2b-893f70a49dc9"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial Black" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Estado de Cuenta]]></text>
 			</staticText>

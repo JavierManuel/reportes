@@ -29,6 +29,10 @@
 	<field name="totalInteres" class="java.lang.String"/>
 	<field name="totalSeguro" class="java.lang.String"/>
 	<field name="totalCuota" class="java.lang.String"/>
+	<parameter name="logo" class="Object" isForPrompting="false">
+		<parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -151,7 +155,7 @@
 			<staticText>
 				<reportElement x="102" y="2" width="350" height="20" uuid="5cbad7c8-26cd-42a3-bd2b-893f70a49dc9"/>
 				<textElement textAlignment="Center">
-					<font fontName="Arial Black" size="14"/>
+					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Detalle proyección de pagos]]></text>
 			</staticText>

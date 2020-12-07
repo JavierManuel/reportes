@@ -10,7 +10,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.*;
@@ -277,6 +280,13 @@ System.out.println(objects[1]);
         item.put("estado", params.get("estado").toString());
         item.put("totalMora", params.get("totalMora").toString());
         item.put("totalExtra", params.get("totalExtra").toString());
+        item.put("logo", this.getClass().getResourceAsStream("/reports/credi.png"));
+        try {
+            BufferedImage image = ImageIO.read(getClass().getResource("/reports/credi.png"));
+            item.put("logo", image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         result.add(item);
         //}
         return result;
