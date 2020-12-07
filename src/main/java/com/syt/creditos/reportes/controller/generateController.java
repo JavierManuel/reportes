@@ -13,8 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -583,10 +586,20 @@ public class generateController {
 
             if(detallePago != null){
 
+
+
                 ObjectMapper oMapper = new ObjectMapper();
                 Map<String, Object> map = oMapper.convertValue(encabezado, Map.class);
                 List<Map<String, Object>> result = new ArrayList<>();
+                try {
+                    BufferedImage image = ImageIO.read(getClass().getResource("/reports/credi.png"));
+                    map.put("logo", image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 result.add(map);
+                System.out.println("IMAGEN QUE VA...");
+                System.out.println(map.get("logo"));
                 this.resultado = result;
                 System.out.println("result");
                 System.out.println(result);

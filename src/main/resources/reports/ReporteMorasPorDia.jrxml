@@ -58,6 +58,12 @@
 		</queryString>
 	</subDataset>
 	<subDataset name="reporteMorasUnoDTO" uuid="8efadfc7-9a03-4f3a-8005-a95fdc807188">
+
+		<parameter name="logo" class="Object" isForPrompting="false">
+			<parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
@@ -90,6 +96,7 @@
 	<field name="reporteMorasDosGraciaDTO" class="java.util.List"/>
 	<title>
 		<band height="105" splitType="Stretch">
+
 			<line>
 				<reportElement x="0" y="80" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -108,7 +115,7 @@
 			</textField>
 			<image hAlign="Center">
 				<reportElement x="10" y="10" width="150" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
-				<imageExpression><![CDATA["src/main/resources/reports/credi.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="210" y="0" width="160" height="23" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
