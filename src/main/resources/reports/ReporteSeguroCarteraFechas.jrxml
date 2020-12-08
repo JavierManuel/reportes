@@ -154,6 +154,7 @@
 	<field name="total3" class="java.lang.Double"/>
 	<field name="total4" class="java.lang.Double"/>
 	<field name="total5" class="java.lang.Double"/>
+	<field name="logo" class="java.awt.image.BufferedImage"/>
 	<variable name="total1" class="java.lang.Double" calculation="System">
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
@@ -214,9 +215,9 @@
 				<reportElement x="465" y="10" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image hAlign="Center">
+			<image hAlign="Center" scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="10" y="10" width="150" height="55" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
-				<imageExpression><![CDATA["src/main/resources/reports/credi.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="170" y="0" width="235" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">

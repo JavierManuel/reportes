@@ -199,6 +199,11 @@ public class generateController {
     @RequestMapping(value = "pagos", method = RequestMethod.POST, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> generarReportePagosFechas(@Valid @RequestBody Map<String, Object> map) {
         byte[] data = null;
+        Double totalCapital = 0.0;
+        Double totalInteres = 0.0;
+        Double totalSeguro= 0.0;
+        Double totalMora = 0.0;
+        Double totalExtra = 0.0;
         try {
 
             ArrayList<Object> detallePago = pagoFeing.generarReporte(map);
@@ -213,21 +218,26 @@ public class generateController {
                     dto.setPrimerNombre(list.get(1).toString());
                     dto.setPrimerApellido(list.get(2).toString());
                     dto.setAbonoCapital(Double.parseDouble(list.get(3).toString()));
+                    totalCapital = totalCapital + Double.parseDouble(list.get(3).toString());
                     if(list.get(4) == null){
                         dto.setInteres(0.00);
                     }else{
                         dto.setInteres(Double.parseDouble(list.get(4).toString()));
+                        totalInteres = totalInteres + Double.parseDouble(list.get(4).toString());
                     }
                     dto.setCuotaSeguro(Double.parseDouble(list.get(5).toString()));
+                    totalSeguro = totalSeguro + Double.parseDouble(list.get(5).toString());
                     if(list.get(6) == null){
                         dto.setTotal(0.00);
                     }else{
                         dto.setTotal(Double.parseDouble(list.get(6).toString()));
+                        totalMora = totalMora + Double.parseDouble(list.get(6).toString());
                     }
                     if(list.get(7) == null){
                         dto.setPagoExtraCapital(0.00);
                     }else{
                         dto.setPagoExtraCapital(Double.parseDouble(list.get(7).toString()));
+                        totalExtra = totalExtra + Double.parseDouble(list.get(7).toString());
                     }
 
                     SimpleDateFormat output = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -238,11 +248,29 @@ public class generateController {
 
                     todo.add(dto);
                 }
+                if(todo != null && todo.size() > 0) {
+                    //ObjectMapper oMapper = new ObjectMapper();
+                    Map<String, Object> mapR = new HashMap<String, Object>();
+                    mapR.put("totalCapital", totalCapital);
+                    mapR.put("totalInteres", totalInteres);
+                    mapR.put("totalSeguro", totalSeguro);
+                    mapR.put("totalMora", totalMora);
+                    mapR.put("totalExtra", totalExtra);
 
-                InputStream inputStream = this.getClass().getResourceAsStream("/reports/ReportePagos.jrxml");
-                JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, new JRBeanCollectionDataSource(todo));
-                data = JasperExportManager.exportReportToPdf(jasperPrint);
+                    mapR.put("dto", todo);
+                    List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+                    try {
+                        BufferedImage image = ImageIO.read(getClass().getResource("/reports/credi.png"));
+                        mapR.put("logo", image);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    result.add(mapR);
+                    InputStream inputStream = this.getClass().getResourceAsStream("/reports/ReportePagos.jrxml");
+                    JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, new JRBeanCollectionDataSource(result));
+                    data = JasperExportManager.exportReportToPdf(jasperPrint);
+                }
             }
 
 
@@ -308,6 +336,12 @@ public class generateController {
                 ObjectMapper oMapper = new ObjectMapper();
                 Map<String, Object> map = oMapper.convertValue(encabezado, Map.class);
                 List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+                try {
+                    BufferedImage image = ImageIO.read(getClass().getResource("/reports/credi.png"));
+                    map.put("logo", image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 result.add(map);
                 System.out.println("result");
                 System.out.println(result);
@@ -772,13 +806,19 @@ public class generateController {
             }
             System.out.println("PARA VER SI SIRVE EL REPORTE INTERES");
             System.out.println(encabezado.getPrimerNombres());
-            System.out.println(encabezado.getReporteInteresesCarteraFechasDTO1().size());
+            //System.out.println(encabezado.getReporteInteresesCarteraFechasDTO1().size());
 
             if(detallePago != null){
 
                 ObjectMapper oMapper = new ObjectMapper();
                 Map<String, Object> map = oMapper.convertValue(encabezado, Map.class);
                 List<Map<String, Object>> result = new ArrayList<>();
+                try {
+                    BufferedImage image = ImageIO.read(getClass().getResource("/reports/credi.png"));
+                    map.put("logo", image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 result.add(map);
                 System.out.println("result");
                 System.out.println(result);

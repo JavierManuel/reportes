@@ -85,6 +85,7 @@
 	<field name="direccions" class="java.lang.String"/>
 	<field name="emails" class="java.lang.String"/>
 	<field name="reporteCreditosCarteraDTO" class="java.util.List"/>
+    <field name="logo" class="java.awt.image.BufferedImage"/>
 	<title>
 		<band height="203" splitType="Stretch">
 			<staticText>
@@ -113,10 +114,10 @@
 				<reportElement x="430" y="10" width="126" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image hAlign="Center">
-				<reportElement x="0" y="0" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
-				<imageExpression><![CDATA["src/main/resources/reports/credi.png"]]></imageExpression>
-			</image>
+            <image hAlign="Center" scaleImage="FillFrame" onErrorType="Blank">
+                <reportElement x="0" y="0" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+                <imageExpression><![CDATA[$F{logo}]]></imageExpression>
+            </image>
 			<staticText>
 				<reportElement x="95" y="0" width="245" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
 					<property name="local_mesure_unitheight" value="pixel"/>

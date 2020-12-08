@@ -59,10 +59,11 @@
 	</subDataset>
 	<subDataset name="reporteMorasUnoDTO" uuid="8efadfc7-9a03-4f3a-8005-a95fdc807188">
 
+		<!--
 		<parameter name="logo" class="Object" isForPrompting="false">
 			<parameterDescription><![CDATA[The letterhead image]]></parameterDescription>
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-		</parameter>
+		</parameter> -->
 
 		<queryString>
 			<![CDATA[]]>
@@ -94,6 +95,7 @@
 	<field name="total1" class="java.lang.Double"/>
 	<field name="reporteMorasUnoDTO" class="java.util.List"/>
 	<field name="reporteMorasDosGraciaDTO" class="java.util.List"/>
+	<field name="logo" class="java.awt.image.BufferedImage"/>
 	<title>
 		<band height="105" splitType="Stretch">
 
@@ -113,9 +115,13 @@
 				<reportElement x="450" y="10" width="106" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<image hAlign="Center">
+			<!-- <image hAlign="Center">
 				<reportElement x="10" y="10" width="150" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>-->
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="10" y="10" width="150" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="210" y="0" width="160" height="23" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
