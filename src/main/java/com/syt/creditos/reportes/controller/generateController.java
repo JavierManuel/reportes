@@ -530,6 +530,12 @@ public class generateController {
                 Map<String, Object> map = oMapper.convertValue(encabezado, Map.class);
                 List<Map<String, Object>> result = new ArrayList<>();
                 result.add(map);
+                try {
+                    BufferedImage image = ImageIO.read(getClass().getResource("/reports/credi.png"));
+                    map.put("logo", image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("result");
                 System.out.println(result);
                 InputStream inputStream = this.getClass().getResourceAsStream("/reports/ReporteInteresCarteraFechas.jrxml");
